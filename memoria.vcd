@@ -1,0 +1,101 @@
+$date
+	Fri Jun 25 13:15:00 2021
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module bancoPrueba $end
+$var wire 1 ! enable_B $end
+$var wire 1 " enable_A $end
+$var wire 6 # dir_B [5:0] $end
+$var wire 6 $ dir_A [5:0] $end
+$var wire 8 % data_OutB [7:0] $end
+$var wire 8 & data_OutA [7:0] $end
+$var wire 8 ' data_InB [7:0] $end
+$var wire 8 ( data_InA [7:0] $end
+$var wire 1 ) clk $end
+$scope module memoria $end
+$var wire 1 ! we_b $end
+$var wire 1 " we_a $end
+$var wire 8 * data_b [7:0] $end
+$var wire 8 + data_a [7:0] $end
+$var wire 1 ) clk $end
+$var wire 6 , addr_b [5:0] $end
+$var wire 6 - addr_a [5:0] $end
+$var reg 8 . q_a [7:0] $end
+$var reg 8 / q_b [7:0] $end
+$upscope $end
+$scope module probador1 $end
+$var wire 8 0 q_a [7:0] $end
+$var wire 8 1 q_b [7:0] $end
+$var reg 6 2 addr_a [5:0] $end
+$var reg 6 3 addr_b [5:0] $end
+$var reg 1 ) clk $end
+$var reg 8 4 data_a [7:0] $end
+$var reg 8 5 data_b [7:0] $end
+$var reg 1 " we_a $end
+$var reg 1 ! we_b $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b11110000 5
+b0 4
+b0 3
+b0 2
+bx 1
+bx 0
+bx /
+bx .
+b0 -
+b0 ,
+b0 +
+b11110000 *
+0)
+b0 (
+b11110000 '
+bx &
+bx %
+b0 $
+b0 #
+x"
+x!
+$end
+#1
+b1 $
+b1 -
+b1 2
+0!
+1"
+1)
+#2
+0)
+#3
+b1 #
+b1 ,
+b1 3
+1!
+0"
+b0 &
+b0 .
+b0 0
+1)
+#4
+0)
+#5
+b11110000 %
+b11110000 /
+b11110000 1
+0!
+1"
+1)
+#6
+0)
+#7
+1!
+0"
+1)
