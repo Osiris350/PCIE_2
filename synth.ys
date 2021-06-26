@@ -1,0 +1,7 @@
+read_verilog memoria.v
+hierarchy -check -top memoria
+proc; opt; fsm; opt; memory; opt;
+techmap; opt
+dfflibmap -liberty cmos_cells.lib
+abc -liberty cmos_cells.lib
+write_verilog memoria_synth.v

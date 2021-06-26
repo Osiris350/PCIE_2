@@ -1,30 +1,54 @@
-module true_dpram_sclk
-(
-	input [7:0] data_a, data_b, // Datos de entrada 8bits
-	input [5:0] addr_a, addr_b, // Direccion a la que se desea guardar
-	input we_a, we_b, clk,
-	output reg [7:0] q_a, q_b
-);
-	// Declare the RAM variable
-	reg [7:0] ram[63:0];  // se tienen 8 cajitas de 64 bits. 
-	
-	// Port A
-	always @ (posedge clk)begin
-		if (we_a) begin
-			ram[addr_a] <= data_a;
-			q_a <= data_a;
-		end else begin
-			q_a <= ram[addr_a];
+module memoria(
+	clk,
+	rst,
+	wr_enb,
+	wr_addr,
+	data_in,
+	rd_enb,
+	rd_addr,
+	data_out
+	);
+
+	parameter RAM_WIDTH = 10;
+	parameter RAM_DEPTH = 8;
+	parameter ADDR_SIZE = 3;
+
+	input clk,rst,wr_enb,rd_enb;
+	input [RAM_WIDTH-1:0] data_in;
+	input [ADDR_SIZE-1:0] rd_addr, wr_addr;
+	output reg [RAM_WIDTH-1:0] data_out;
+
+	reg [RAM_WIDTH-1:0]mem[RAM_DEPTH-1:0];
+	integer i;
+
+	always @(posedge clk)begin
+		if (~rst)begin
+			for (i=0; i<RAM_DEPTH; i=i+1)
+				mem[i] <= 0;
+		end
+		else begin
+			if (wr_enb) begin
+				mem[wr_addr] <= data_in;
+			end else begin
+				mem[wr_addr] <= 0;
+			end/*
+			if (rd_enb)begin
+				data_out <= mem[rd_addr];
+			end else begin
+				data_out <= 0;
+			end*/
 		end
 	end
-	
-	// Port B
-	always @ (posedge clk)begin
-		if (we_b)begin
-			ram[addr_b] <= data_b;
-			q_b <= data_b;
+
+	always @(*)begin
+		if (rst == 0) begin 
+			data_out <= 0;
 		end else begin
-			q_b <= ram[addr_b];
+			if (rd_enb)begin
+				data_out <= mem[rd_addr];
+			end else begin
+				data_out <= 0;
+			end
 		end
 	end
 endmodule

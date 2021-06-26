@@ -1,41 +1,45 @@
 `include  "memoria.v"
-`include "probador.v"
+`include  "memoria_synth.v"
+`include "cmos_cells.v"
+`include "probador1.v"
+`include "probador2.v"
 
-module bancoPrueba;
+module BancoPrueba;
 
-wire [7:0] data_OutA, data_OutB; 
-wire [7:0] data_InA, data_InB;
-wire [5:0] dir_A, dir_B;
-wire enable_A,enable_B;
-wire clk; 
+parameter RAM_WIDTH = 10;
+parameter RAM_DEPTH = 8;
+parameter ADDR_SIZE = 3;
+
+wire clk,rst,wr_enb,rd_enb;
+wire [RAM_WIDTH-1:0] data_in;
+wire [ADDR_SIZE-1:0] rd_addr, wr_addr;
+wire [RAM_WIDTH-1:0] data_out;
 
 
-true_dpram_sclk memoria (
+memoria memory(
     //OUTPUTS
-    .q_a    (data_OutA),
-    .q_b    (data_OutB),
+    .data_out (data_out),
     //INPUTS
-    .data_a (data_InA),
-    .data_b (data_InB),
-    .addr_a (dir_A),
-    .addr_b (dir_B),
-    .we_a   (enable_A),
-    .we_b   (enable_B),
+    .data_in (data_in),
+    .wr_enb  (wr_enb),
+    .rd_enb  (rd_enb),
+    .rd_addr (rd_addr),
+    .wr_addr (wr_addr),
+    .rst    (rst),
     .clk    (clk)
 );
 
 probador probador1(
     //OUTPUTS
-    .data_a (data_InA),
-    .data_b (data_InB),
-    .addr_a (dir_A),
-    .addr_b (dir_B),
-    .we_a   (enable_A),
-    .we_b   (enable_B),
+    .data_in (data_in),
+    .wr_enb  (wr_enb),
+    .rd_enb  (rd_enb),
+    .rd_addr (rd_addr),
+    .wr_addr (wr_addr),
+    .rst    (rst),
     .clk    (clk),
     //INPUTS
-    .q_a    (data_OutA),
-    .q_b    (data_OutB)
+    .data_out (data_out)
 );
 
 
