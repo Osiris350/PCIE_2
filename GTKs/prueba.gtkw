@@ -1,0 +1,314 @@
+[*]
+[*] GTKWave Analyzer v3.3.103 (w)1999-2019 BSI
+[*] Tue Jul 13 23:46:10 2021
+[*]
+[dumpfile] "layer.vcd"
+[dumpfile_mtime] "Tue Jul 13 21:46:47 2021"
+[dumpfile_size] 1525154
+[savefile] "/home/link/Desktop/Circuitos_digitales_2/Prueba_Final/prueba.gtkw"
+[timestart] 0
+[size] 1848 920
+[pos] 72 27
+*-5.626439 0 -1 14 198 342 182 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[markername] BPrimera prueba
+[markername] CSegunda prueba
+[markername] DContadores
+[markername] EContadores
+[treeopen] BancoPrueba.layer1.
+[treeopen] BancoPrueba.layer2.
+[treeopen] BancoPrueba.layer2.fifo1.
+[sst_width] 233
+[signals_width] 195
+[sst_expanded] 1
+[sst_vpaned_height] 289
+@28
+[color] 1
+BancoPrueba.clk
+@200
+-FSM
+-Conductual
+@c00024
+[color] 4
+BancoPrueba.layer1.maquina.estado[1:0]
+@28
+(0)BancoPrueba.layer1.maquina.estado[1:0]
+(1)BancoPrueba.layer1.maquina.estado[1:0]
+@1401200
+-group_end
+@200
+-Estructural
+@c00022
+[color] 4
+BancoPrueba.layer2.maquina.estado[3:0]
+@28
+(0)BancoPrueba.layer2.maquina.estado[3:0]
+(1)BancoPrueba.layer2.maquina.estado[3:0]
+(2)BancoPrueba.layer2.maquina.estado[3:0]
+(3)BancoPrueba.layer2.maquina.estado[3:0]
+@1401200
+-group_end
+@200
+-UMBRALES 
+-Conductual
+@24
+[color] 2
+BancoPrueba.layer1.maquina.umbral_IN_H[2:0]
+[color] 2
+BancoPrueba.layer1.maquina.umbral_IN_L[2:0]
+[color] 3
+BancoPrueba.layer1.maquina.umbral_OUT_H[2:0]
+[color] 3
+BancoPrueba.layer1.maquina.umbral_OUT_L[2:0]
+@200
+-Estructural
+@24
+[color] 2
+BancoPrueba.layer2.maquina.umbral_IN_H[2:0]
+[color] 2
+BancoPrueba.layer2.maquina.umbral_IN_L[2:0]
+[color] 3
+BancoPrueba.layer2.maquina.umbral_OUT_H[2:0]
+[color] 3
+BancoPrueba.layer2.maquina.umbral_OUT_L[2:0]
+@200
+-FIFO 1
+-Conductual
+@c00022
+[color] 5
+BancoPrueba.layer1.fifo1.fifo_data_in[9:0]
+@28
+(0)BancoPrueba.layer1.fifo1.fifo_data_in[9:0]
+(1)BancoPrueba.layer1.fifo1.fifo_data_in[9:0]
+(2)BancoPrueba.layer1.fifo1.fifo_data_in[9:0]
+(3)BancoPrueba.layer1.fifo1.fifo_data_in[9:0]
+(4)BancoPrueba.layer1.fifo1.fifo_data_in[9:0]
+(5)BancoPrueba.layer1.fifo1.fifo_data_in[9:0]
+(6)BancoPrueba.layer1.fifo1.fifo_data_in[9:0]
+(7)BancoPrueba.layer1.fifo1.fifo_data_in[9:0]
+(8)BancoPrueba.layer1.fifo1.fifo_data_in[9:0]
+(9)BancoPrueba.layer1.fifo1.fifo_data_in[9:0]
+@1401200
+-group_end
+@22
+[color] 1
+BancoPrueba.layer1.fifo1.fifo_data_out[9:0]
+@28
+[color] 3
+BancoPrueba.layer1.fifo1.almost_full
+@200
+-Estructural
+@22
+[color] 5
+BancoPrueba.layer2.fifo1.fifo_data_in[9:0]
+[color] 1
+BancoPrueba.layer2.fifo1.fifo_data_out[9:0]
+@28
+[color] 3
+BancoPrueba.layer2.fifo1.almost_full
+@200
+-FIFO 5
+-Conductual
+@22
+[color] 2
+BancoPrueba.layer1.fifo5.fifo_data_in[9:0]
+[color] 7
+BancoPrueba.layer1.fifo5.fifo_data_out[9:0]
+@28
+BancoPrueba.layer1.fifo5.almost_full
+@200
+-Estructural
+@22
+[color] 2
+BancoPrueba.layer2.fifo5.fifo_data_in[9:0]
+[color] 7
+BancoPrueba.layer2.fifo5.fifo_data_out[9:0]
+@28
+BancoPrueba.layer2.fifo5.almost_full
+@200
+-FIFO 2
+-Conductual
+@22
+[color] 1
+BancoPrueba.layer1.fifo2.fifo_data_in[9:0]
+[color] 3
+BancoPrueba.layer1.fifo2.fifo_data_out[9:0]
+@28
+[color] 5
+BancoPrueba.layer1.fifo2.almost_full
+@200
+-Estructural
+@22
+[color] 1
+BancoPrueba.layer2.fifo2.fifo_data_in[9:0]
+[color] 3
+BancoPrueba.layer2.fifo2.fifo_data_out[9:0]
+@28
+[color] 5
+BancoPrueba.layer2.fifo2.almost_full
+@200
+-FIFO 6
+-Conductual
+@22
+[color] 4
+BancoPrueba.layer1.fifo6.fifo_data_in[9:0]
+[color] 6
+BancoPrueba.layer1.fifo6.fifo_data_out[9:0]
+@28
+[color] 1
+BancoPrueba.layer1.fifo6.almost_full
+@200
+-Estructural
+@c00022
+BancoPrueba.layer2.fifo6.fifo_data_in[9:0]
+@28
+(0)BancoPrueba.layer2.fifo6.fifo_data_in[9:0]
+(1)BancoPrueba.layer2.fifo6.fifo_data_in[9:0]
+(2)BancoPrueba.layer2.fifo6.fifo_data_in[9:0]
+(3)BancoPrueba.layer2.fifo6.fifo_data_in[9:0]
+(4)BancoPrueba.layer2.fifo6.fifo_data_in[9:0]
+(5)BancoPrueba.layer2.fifo6.fifo_data_in[9:0]
+(6)BancoPrueba.layer2.fifo6.fifo_data_in[9:0]
+(7)BancoPrueba.layer2.fifo6.fifo_data_in[9:0]
+(8)BancoPrueba.layer2.fifo6.fifo_data_in[9:0]
+(9)BancoPrueba.layer2.fifo6.fifo_data_in[9:0]
+@1401200
+-group_end
+@22
+[color] 6
+BancoPrueba.layer2.fifo6.fifo_data_out[9:0]
+@28
+[color] 1
+BancoPrueba.layer2.fifo6.almost_full
+@200
+-FIFO 3
+-Conductual
+@22
+[color] 2
+BancoPrueba.layer1.fifo3.fifo_data_in[9:0]
+[color] 3
+BancoPrueba.layer1.fifo3.fifo_data_out[9:0]
+@28
+[color] 5
+BancoPrueba.layer1.fifo3.almost_full
+@200
+-Estructural
+@22
+[color] 2
+BancoPrueba.layer2.fifo3.fifo_data_in[9:0]
+[color] 3
+BancoPrueba.layer2.fifo3.fifo_data_out[9:0]
+@28
+[color] 5
+BancoPrueba.layer2.fifo3.almost_full
+@200
+-FIFO 7
+-Conductual
+@22
+BancoPrueba.layer1.fifo7.fifo_data_in[9:0]
+@c00022
+[color] 7
+BancoPrueba.layer1.fifo7.fifo_data_out[9:0]
+@28
+(0)BancoPrueba.layer1.fifo7.fifo_data_out[9:0]
+(1)BancoPrueba.layer1.fifo7.fifo_data_out[9:0]
+(2)BancoPrueba.layer1.fifo7.fifo_data_out[9:0]
+(3)BancoPrueba.layer1.fifo7.fifo_data_out[9:0]
+(4)BancoPrueba.layer1.fifo7.fifo_data_out[9:0]
+(5)BancoPrueba.layer1.fifo7.fifo_data_out[9:0]
+(6)BancoPrueba.layer1.fifo7.fifo_data_out[9:0]
+(7)BancoPrueba.layer1.fifo7.fifo_data_out[9:0]
+(8)BancoPrueba.layer1.fifo7.fifo_data_out[9:0]
+(9)BancoPrueba.layer1.fifo7.fifo_data_out[9:0]
+@1401200
+-group_end
+@28
+[color] 1
+BancoPrueba.layer1.fifo7.almost_full
+@200
+-Estructural
+@22
+BancoPrueba.layer2.fifo7.fifo_data_in[9:0]
+[color] 7
+BancoPrueba.layer2.fifo7.fifo_data_out[9:0]
+@28
+[color] 1
+BancoPrueba.layer2.fifo7.almost_full
+@200
+-FIFO 4
+-Conductual
+@22
+[color] 3
+BancoPrueba.layer1.fifo4.fifo_data_in[9:0]
+[color] 2
+BancoPrueba.layer1.fifo4.fifo_data_out[9:0]
+@28
+[color] 5
+BancoPrueba.layer1.fifo4.almost_full
+@200
+-Estructural
+@22
+[color] 3
+BancoPrueba.layer2.fifo4.fifo_data_in[9:0]
+[color] 2
+BancoPrueba.layer2.fifo4.fifo_data_out[9:0]
+@28
+[color] 5
+BancoPrueba.layer2.fifo4.almost_full
+@200
+-FIFO 8
+-Conductual
+@22
+BancoPrueba.layer1.fifo8.fifo_data_in[9:0]
+[color] 7
+BancoPrueba.layer1.fifo8.fifo_data_out[9:0]
+@28
+[color] 1
+BancoPrueba.layer1.fifo8.almost_full
+@200
+-Estructural
+@22
+BancoPrueba.layer2.fifo8.fifo_data_in[9:0]
+[color] 7
+BancoPrueba.layer2.fifo8.fifo_data_out[9:0]
+@28
+[color] 1
+BancoPrueba.layer2.fifo8.almost_full
+@200
+-Contadores
+-Conductual
+@24
+[color] 6
+BancoPrueba.layer1.contador1.data_out[4:0]
+[color] 2
+BancoPrueba.layer1.contador1.idx[1:0]
+@28
+[color] 5
+BancoPrueba.layer1.contador1.req
+@24
+[color] 1
+BancoPrueba.layer1.contador1.cont_0[4:0]
+[color] 4
+BancoPrueba.layer1.contador1.cont_1[4:0]
+[color] 7
+BancoPrueba.layer1.contador1.cont_2[4:0]
+[color] 3
+BancoPrueba.layer1.contador1.cont_3[4:0]
+@200
+-Estructural
+@24
+[color] 6
+BancoPrueba.layer2.contador1.data_out[4:0]
+[color] 2
+BancoPrueba.layer2.contador1.idx[1:0]
+[color] 5
+BancoPrueba.layer2.contador1.req
+[color] 1
+BancoPrueba.layer2.contador1.cont_0[4:0]
+BancoPrueba.layer2.contador1.cont_1[4:0]
+[color] 7
+BancoPrueba.layer2.contador1.cont_2[4:0]
+@25
+[color] 3
+BancoPrueba.layer2.contador1.cont_3[4:0]
+[pattern_trace] 1
+[pattern_trace] 0
