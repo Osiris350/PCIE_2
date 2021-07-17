@@ -4,7 +4,6 @@
 `include "Arbitro_cond.v"
 `include "maquina_est.v"
 
-
 module transactionLayer 
 #(
     parameter MEM_SIZE = 8,      //Tamano de memoria (Cantidad de entradas)
@@ -13,7 +12,7 @@ module transactionLayer
     parameter FIFO_UNITS = 4    //Cantidad de fifos por banco de fifos
 )
 (
-    //inputs generales 
+    // Inputs generales 
     input [PTR_L-1:0] umbral_IN_H,
     input [PTR_L-1:0] umbral_IN_L,
     input [WORD_SIZE-1:0] fifo1_data_in,
@@ -21,36 +20,34 @@ module transactionLayer
     input [WORD_SIZE-1:0] fifo3_data_in,
     input [WORD_SIZE-1:0] fifo4_data_in,
     input clk, 
-    input reset_L, 
-    //Fifos de entrada
-        //Fifo #1
-    input fifo1_wr,
-        //Fifo #2
-    input fifo2_wr,
-        //Fifo #3
-    input fifo3_wr,
-        //Fifo #4
-    input fifo4_wr,
-    //Fifos Salida
-        //Fifo #5
-    input fifo5_rd,
-        //Fifo #6
-    input fifo6_rd,
-        //Fifo #7
-    input fifo7_rd,
-        //Fifo #8
-    input fifo8_rd,
-    //Contadores 
+    input reset_L,
+
+    // Fifos de entrada
+    input fifo1_wr, //Fifo #1
+    input fifo2_wr, //Fifo #2
+    input fifo3_wr, //Fifo #3
+    input fifo4_wr, //Fifo #4
+
+    // Fifos de salida
+    input fifo5_rd, //Fifo #5
+    input fifo6_rd, //Fifo #6
+    input fifo7_rd, //Fifo #7
+    input fifo8_rd, //Fifo #8
+
+    // Contadores 
     input req, 
     input [1:0] idx,
-    //Maquina
+
+    // Maquina
     input init,
-    //Fifos Salida
+
+    // Fifos Salida
     output [WORD_SIZE-1:0] fifo5_data_out,
     output [WORD_SIZE-1:0] fifo6_data_out,
     output [WORD_SIZE-1:0] fifo7_data_out,
     output [WORD_SIZE-1:0] fifo8_data_out,
-    //Errores de los fifos
+
+    // Errores de los fifos
     output fifo1_error,
     output fifo2_error,
     output fifo3_error,
@@ -59,7 +56,8 @@ module transactionLayer
     output fifo6_error,
     output fifo7_error,
     output fifo8_error,
-    //almost_emptys
+    
+    // Almost emptys
     output fifo1_almost_empty,
     output fifo2_almost_empty,
     output fifo3_almost_empty,
@@ -68,12 +66,14 @@ module transactionLayer
     output fifo6_almost_empty,
     output fifo7_almost_empty,
     output fifo8_almost_empty,
-    //almost fulls
+
+    // Almost fulls
     output fifo1_almost_full,
     output fifo2_almost_full,
     output fifo3_almost_full,
     output fifo4_almost_full,
-    //Fulls
+    
+    // Fulls
     output fifo1_full,
     output fifo2_full,
     output fifo3_full,
@@ -82,45 +82,58 @@ module transactionLayer
     output fifo6_full,
     output fifo7_full,
     output fifo8_full,
-    //Contadores
+    
+    // Contadores
     output [4:0] data_out_contador, 
     output valids,
-    //Maquina
+    
+    // Maquina
     output  active_out);
 
-//Wires intermedios 
-    //Salidas de los fifos de entrada
-        //data out
+// Wires intermedios
+
+    // Salidas de los fifos de entrada
+        // Data out
             wire [WORD_SIZE-1:0] fifo1_data_out;
             wire [WORD_SIZE-1:0] fifo2_data_out;
             wire [WORD_SIZE-1:0] fifo3_data_out;
             wire [WORD_SIZE-1:0] fifo4_data_out;
-        //empys
+
+        // Emptys
             wire [FIFO_UNITS-1:0] arb_empty;
-    //Fifos Salida
-        //Data in
+
+    // Fifos Salida
+        // Data in
             wire [WORD_SIZE-1:0] fifo_data_in1;
             wire [WORD_SIZE-1:0] fifo_data_in2;
             wire [WORD_SIZE-1:0] fifo_data_in3;
             wire [WORD_SIZE-1:0] fifo_data_in4;
-        //almost_fulls
+        
+        // Almost fulls
             wire [FIFO_UNITS-1:0] arb_almost_full;
-        //empys
+        
+        // Emptys
             wire [FIFO_UNITS-1:0] vacio;
-    //Salidas del mux/demux-Arbitro
+
+    // Salidas del mux/demux-Arbitro
             wire [WORD_SIZE-1:0] data_aux_cond;
-        //POP
+        
+        // POP
             wire [FIFO_UNITS-1:0] arb_pop;
-        //PUSH
+        
+        // PUSH
             wire [FIFO_UNITS-1:0] arb_push;
-    //Maquina de estados
-        //Umbrales
+    
+    // Maquina de estados
+        // Umbrales
             wire [PTR_L-1:0] full_threshold;
             wire [PTR_L-1:0] empty_threshold;
-        //Estados
+        
+        // Estados
             wire idle_out;
-//Maquina de estados
-    maquina_estados maquina (
+
+// Maquina de estados
+    maquina_estados maquina (/*AUTOINST*/
         //Ouputs
         .active_out     (active_out),
         .idle_out       (idle_out),
@@ -140,9 +153,10 @@ module transactionLayer
         .emp_O1      (vacio[1]),
         .emp_O2      (vacio[2]),
         .emp_O3      (vacio[3])
-    ); 
-//Fifos de entrada
-    fifo #(.MEM_SIZE (MEM_SIZE)) fifo1 (
+    );
+
+// Fifos de entrada
+    fifo #(.MEM_SIZE (MEM_SIZE)) fifo1 (/*AUTOINST*/
         //Outputs
         .fifo_data_out   (fifo1_data_out[WORD_SIZE-1:0]),
         .error           (fifo1_error),
@@ -159,7 +173,8 @@ module transactionLayer
         .clk             (clk),
         .reset_L         (reset_L)
     );
-    fifo #(.MEM_SIZE (MEM_SIZE)) fifo2 (
+
+    fifo #(.MEM_SIZE (MEM_SIZE)) fifo2 (/*AUTOINST*/
         //Outputs
         .fifo_data_out   (fifo2_data_out[WORD_SIZE-1:0]),
         .error           (fifo2_error),
@@ -176,7 +191,8 @@ module transactionLayer
         .clk             (clk),
         .reset_L         (reset_L)
     );
-    fifo #(.MEM_SIZE (MEM_SIZE)) fifo3 (
+
+    fifo #(.MEM_SIZE (MEM_SIZE)) fifo3 (/*AUTOINST*/
         //Outputs
         .fifo_data_out   (fifo3_data_out[WORD_SIZE-1:0]),
         .error           (fifo3_error),
@@ -193,7 +209,8 @@ module transactionLayer
         .clk             (clk),
         .reset_L         (reset_L)
     );
-    fifo #(.MEM_SIZE (MEM_SIZE)) fifo4 (
+
+    fifo #(.MEM_SIZE (MEM_SIZE)) fifo4 (/*AUTOINST*/
         //Outputs
         .fifo_data_out   (fifo4_data_out[WORD_SIZE-1:0]),
         .error           (fifo4_error),
@@ -210,8 +227,9 @@ module transactionLayer
         .clk             (clk),
         .reset_L         (reset_L)
     );
+
 // MISC y Arbitro
-    Bloque_mxdx_cond  mxdx (
+    Bloque_mxdx_cond  mxdx (/*AUTOINST*/
         //Outputs
         .fifo_data_out_cond0 (fifo_data_in1 [WORD_SIZE-1:0]),
         .fifo_data_out_cond1 (fifo_data_in2 [WORD_SIZE-1:0]),
@@ -226,7 +244,8 @@ module transactionLayer
         .fifo_data_in2 (fifo3_data_out [WORD_SIZE-1:0]),
         .fifo_data_in3 (fifo4_data_out [WORD_SIZE-1:0])
     );
-    Arbitro_cond #(.FIFO_UNITS (FIFO_UNITS)) arbitro (
+
+    Arbitro_cond #(.FIFO_UNITS (FIFO_UNITS)) arbitro (/*AUTOINST*/
         //Outputs
         .arb_pop_cond    (arb_pop [FIFO_UNITS-1:0]),
         .arb_push_cond   (arb_push [FIFO_UNITS-1:0]),
@@ -237,8 +256,9 @@ module transactionLayer
         .arb_empty       (arb_empty[FIFO_UNITS-1:0]),
         .arb_almost_full (arb_almost_full[FIFO_UNITS-1:0])
     );
-//Fifos Salida
-    fifo #(.MEM_SIZE (MEM_SIZE)) fifo5 (
+
+// Fifos Salida
+    fifo #(.MEM_SIZE (MEM_SIZE)) fifo5 (/*AUTOINST*/
         //Outputs
         .fifo_data_out   (fifo5_data_out[WORD_SIZE-1:0]),
         .error           (fifo5_error),
@@ -255,7 +275,8 @@ module transactionLayer
         .clk             (clk),
         .reset_L         (reset_L)
     );
-    fifo #(.MEM_SIZE (MEM_SIZE)) fifo6 (
+
+    fifo #(.MEM_SIZE (MEM_SIZE)) fifo6 (/*AUTOINST*/
         //Outputs
         .fifo_data_out   (fifo6_data_out[WORD_SIZE-1:0]),
         .error           (fifo6_error),
@@ -272,7 +293,8 @@ module transactionLayer
         .clk             (clk),
         .reset_L         (reset_L)
     );
-    fifo #(.MEM_SIZE (MEM_SIZE)) fifo7 (
+
+    fifo #(.MEM_SIZE (MEM_SIZE)) fifo7 (/*AUTOINST*/
         //Outputs
         .fifo_data_out   (fifo7_data_out[WORD_SIZE-1:0]),
         .error           (fifo7_error),
@@ -289,7 +311,8 @@ module transactionLayer
         .clk             (clk),
         .reset_L         (reset_L)
     );
-    fifo #(.MEM_SIZE (MEM_SIZE)) fifo8 (
+
+    fifo #(.MEM_SIZE (MEM_SIZE)) fifo8 (/*AUTOINST*/
         //Outputs
         .fifo_data_out   (fifo8_data_out[WORD_SIZE-1:0]),
         .error           (fifo8_error),
@@ -306,8 +329,9 @@ module transactionLayer
         .clk             (clk),
         .reset_L         (reset_L)
     );
-//Contadores
-    contador_cond contador1 (
+
+// Contadores
+    contador_cond contador1 (/*AUTOINST*/
         //Outputs
         .data_out (data_out_contador),
         .valids   (valids),
